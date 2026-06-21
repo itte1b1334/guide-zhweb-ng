@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NG体育 · 稳定入口与使用说明</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    }
+
+    body {
+      background: #f2f2f5;
+      color: #1e1e2a;
+      line-height: 1.6;
+      padding: 2rem 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .page-wrapper {
+      max-width: 1100px;
+      width: 100%;
+    }
+
+    /* hero 区 */
+    .hero {
+      text-align: center;
+      padding: 3rem 1rem 2rem 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      color: #222;
+    }
+
+    .hero .sub {
+      margin-top: 0.8rem;
+      font-size: 1.1rem;
+      color: #4a4a5a;
+      max-width: 650px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero .badge {
+      display: inline-block;
+      background: #e5e5ec;
+      border-radius: 40px;
+      padding: 0.25rem 1rem;
+      font-size: 0.85rem;
+      color: #2f2f3f;
+      margin-top: 1.2rem;
+      border: 1px solid #d0d0da;
+    }
+
+    /* 卡片网格 */
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 1.8rem 1.6rem;
+      border: 1px solid #e0e0ea;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03), 0 1px 3px rgba(0,0,0,0.02);
+      transition: box-shadow 0.2s;
+    }
+
+    .card:hover {
+      box-shadow: 0 8px 20px rgba(0,0,0,0.05), 0 2px 6px rgba(0,0,0,0.03);
+    }
+
+    .card h3 {
+      font-weight: 500;
+      font-size: 1.3rem;
+      margin-bottom: 0.75rem;
+      color: #1e1e2a;
+      letter-spacing: -0.01em;
+    }
+
+    .card p, .card ul {
+      font-size: 0.98rem;
+      color: #333342;
+    }
+
+    .card ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .card ul li {
+      padding: 0.3rem 0;
+      padding-left: 1.2rem;
+      position: relative;
+    }
+
+    .card ul li::before {
+      content: "·";
+      position: absolute;
+      left: 0;
+      color: #77778a;
+      font-weight: bold;
+    }
+
+    .soft-highlight {
+      background: #f8f8fc;
+      border-radius: 12px;
+      padding: 1.5rem 1.5rem;
+      border: 1px solid #e3e3ed;
+      margin: 1.8rem 0;
+    }
+
+    .soft-highlight p {
+      margin-bottom: 0.6rem;
+    }
+
+    .faq-compact {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 1.5rem 1.8rem;
+      border: 1px solid #e0e0ea;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+      margin: 1.8rem 0;
+    }
+
+    .faq-compact h3 {
+      font-weight: 500;
+      font-size: 1.15rem;
+      margin-bottom: 1rem;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid #ededf2;
+      padding: 0.8rem 0;
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+
+    .faq-q {
+      font-weight: 500;
+      margin-bottom: 0.2rem;
+      font-size: 1rem;
+    }
+
+    .faq-a {
+      color: #46465a;
+      font-size: 0.95rem;
+    }
+
+    .link-inline {
+      color: #2e5b8a;
+      text-decoration: none;
+      border-bottom: 1px solid #cbdae9;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .link-inline:hover {
+      color: #1b3d62;
+      border-bottom-color: #1b3d62;
+    }
+
+    .footer-note {
+      text-align: center;
+      margin-top: 3rem;
+      padding: 1.5rem 0 0.5rem 0;
+      border-top: 1px solid #dcdce6;
+      color: #5f5f70;
+      font-size: 0.9rem;
+    }
+
+    .footer-note a {
+      color: #2e5b8a;
+      text-decoration: none;
+    }
+
+    .footer-note a:hover {
+      text-decoration: underline;
+    }
+
+    /* 响应式 */
+    @media (max-width: 700px) {
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 1rem 0.8rem;
+      }
+
+      .card {
+        padding: 1.4rem 1.2rem;
+      }
+
+      .hero h1 {
+        font-size: 1.7rem;
+      }
+
+      .faq-compact {
+        padding: 1.2rem 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrapper">
+
+  <!-- hero -->
+  <div class="hero">
+    <h1>NG体育 · 一点说明</h1>
+    <div class="sub">
+      一个偏向生活节奏的稳定入口，把常用页面整理成简要介绍，方便自己偶尔翻看。
+    </div>
+    <span class="badge">产品说明式 · 轻量指引</span>
+  </div>
+
+  <!-- 摘要 + 亮点卡片组 -->
+  <div class="card-grid">
+    <div class="card">
+      <h3>页面摘要</h3>
+      <p>这里主要围绕 <a href="https://zhweb--ng.com" class="link-inline">NG体育</a> 做一些结构化的整理，把几个常用板块的用途、特点以及使用上的小建议放在一起。页面本身不复杂，更像一个随手写的备忘录，方便自己或偶尔路过的人快速了解。</p>
+    </div>
+    <div class="card">
+      <h3>几个亮点</h3>
+      <ul>
+        <li>卡片分区清晰，信息密度适中</li>
+        <li>没有弹窗或强制跳转，干净直接</li>
+        <li>配色柔和，长时间看也不累</li>
+        <li>所有链接都指向同一个稳定位置</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 使用建议 软高亮 -->
+  <div class="soft-highlight">
+    <p style="font-weight: 500; margin-bottom: 0.3rem;">📌 使用建议</p>
+    <p>你可以把当前页面当作一个轻量索引。想浏览日常内容时，直接通过 <a href="https://zhweb--ng.com" class="link-inline">NG体育</a> 进入主站，所有功能模块都在那里。建议用电脑或平板浏览，体验更一致。手机访问也没问题，页面会自适应调整。</p>
+    <p style="margin-top: 0.8rem;">另外，偶尔清理一下浏览器缓存，能让页面加载保持流畅。如果你习惯用书签，直接把当前地址存下来就好，不用每次重新输入。</p>
+  </div>
+
+  <!-- 场景卡片 + 可信提示 -->
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 1.5rem 0;">
+    <div class="card" style="margin:0;">
+      <h3>日常场景</h3>
+      <p>早上打开看一眼，或者午休时翻翻。不需要每次从头找入口，打开书签就能直接到 <a href="https://zhweb--ng.com" class="link-inline">NG体育</a> 首页。页面加载快，内容稳定，适合日常随手用。</p>
+    </div>
+    <div class="card" style="margin:0;">
+      <h3>可信但克制</h3>
+      <p>本站不收集多余信息，也没有诱导点击的按钮。所有说明都基于实际页面结构。如果你发现任何描述与实际不符，随时可以对照主站自行判断。我们不做夸张承诺，只提供真实的入口指引。</p>
+    </div>
+  </div>
+
+  <!-- FAQ 摘要 -->
+  <div class="faq-compact">
+    <h3>❓ 常见疑问摘要</h3>
+    <div class="faq-item">
+      <div class="faq-q">这个页面和主站是什么关系？</div>
+      <div class="faq-a">一个简化的介绍页，帮你快速了解 <a href="https://zhweb--ng.com" class="link-inline">NG体育</a> 的板块和用途。主站包含完整功能，本页仅做摘要和说明。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">链接安全吗？</div>
+      <div class="faq-a">所有链接都指向同一个固定域名 <code>zhweb--ng.com</code>，不经过任何第三方跳转。建议你自己确认一下地址栏再点击。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">为什么没有“进入官网”之类的按钮？</div>
+      <div class="faq-a">因为更想保持一种生活化但克制的质感——直接通过句子里的链接过去就好，不需要专门强调入口。你可以把链接当作自然文本的一部分。</div>
+    </div>
+  </div>
+
+  <!-- 页脚 -->
+  <div class="footer-note">
+    <p>页面仅供介绍说明 · 主站地址：<a href="https://zhweb--ng.com">NG体育</a> · 日常更新 2025</p>
+  </div>
+
+</div>
+</body>
+</html>
