@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>一份关于乐鱼的简单笔记</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(145deg, #f9e7d4 0%, #f2d5b8 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 2rem 1.5rem;
+            line-height: 1.7;
+            color: #2e241e;
+        }
+
+        .card {
+            max-width: 780px;
+            width: 100%;
+            background: #fffbf8;
+            border-radius: 36px;
+            box-shadow: 0 12px 32px rgba(110, 70, 40, 0.12), 0 4px 12px rgba(90, 60, 30, 0.08);
+            padding: 2.8rem 2.5rem;
+            transition: box-shadow 0.2s;
+            margin: 1.5rem 0 3rem;
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 1rem 0.8rem;
+            }
+            .card {
+                padding: 2rem 1.4rem;
+                border-radius: 28px;
+            }
+        }
+
+        /* 文章头部 */
+        .article-header {
+            margin-bottom: 2.2rem;
+        }
+
+        .article-title {
+            font-size: 2rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            color: #3c2a1e;
+            line-height: 1.25;
+            margin-bottom: 0.6rem;
+        }
+
+        .article-title small {
+            font-weight: 400;
+            font-size: 1.1rem;
+            color: #7f6a58;
+            margin-left: 0.3rem;
+        }
+
+        .meta-line {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 0.4rem 1.2rem;
+            font-size: 0.9rem;
+            color: #8a7868;
+            border-left: 3px solid #dabfaa;
+            padding-left: 1rem;
+            margin-top: 0.25rem;
+        }
+
+        .meta-line span {
+            background: #f0e4d8;
+            padding: 0.05rem 0.7rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+        }
+
+        /* 导语 */
+        .lead {
+            font-size: 1.1rem;
+            color: #4a382c;
+            background: #fcf5ed;
+            padding: 1rem 1.4rem;
+            border-radius: 24px;
+            margin-bottom: 2rem;
+            border: 1px solid #eddccd;
+            box-shadow: inset 0 1px 3px rgba(255, 245, 235, 0.6);
+        }
+
+        /* 正文段落 */
+        .body-text p {
+            margin-bottom: 1.3rem;
+            font-size: 1rem;
+            color: #3d322a;
+        }
+
+        .body-text p strong {
+            color: #8b5d3c;
+            font-weight: 600;
+        }
+
+        .body-text .inset-quote {
+            background: #f9f0e7;
+            padding: 1.2rem 1.6rem;
+            border-radius: 30px;
+            margin: 1.6rem 0;
+            font-style: normal;
+            border-left: 5px solid #c9a88b;
+            color: #4e3b2d;
+            box-shadow: 0 2px 6px rgba(140, 90, 50, 0.04);
+        }
+
+        .body-text .inset-quote::before {
+            content: "📌 ";
+            font-size: 1.1rem;
+        }
+
+        /* 链接按钮风格 */
+        .link-button-wrapper {
+            text-align: center;
+            margin: 2.2rem 0 1.5rem;
+        }
+
+        .link-button-wrapper a {
+            display: inline-block;
+            background: linear-gradient(135deg, #dbb89e 0%, #c89f82 100%);
+            color: #2a1f18;
+            padding: 0.7rem 2.2rem;
+            border-radius: 60px;
+            font-weight: 500;
+            font-size: 1rem;
+            text-decoration: none;
+            box-shadow: 0 6px 14px rgba(150, 100, 60, 0.18);
+            transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
+            letter-spacing: 0.3px;
+            border: 1px solid #edd7c6;
+        }
+
+        .link-button-wrapper a:hover {
+            background: linear-gradient(135deg, #ceaa8d 0%, #bc8f6e 100%);
+            box-shadow: 0 8px 18px rgba(120, 75, 40, 0.2);
+            transform: scale(1.01);
+        }
+
+        .link-button-wrapper a:active {
+            transform: scale(0.97);
+        }
+
+        /* 访问句 + 提示 */
+        .visit-note {
+            font-size: 0.95rem;
+            background: #f5ece4;
+            border-radius: 28px;
+            padding: 1.3rem 1.6rem;
+            margin: 2rem 0 0.5rem;
+            border: 1px solid #e2d0be;
+            color: #3f342b;
+        }
+
+        .visit-note a {
+            color: #7c5a3f;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-thickness: 1px;
+            text-decoration-color: #c9aa8e;
+            font-weight: 500;
+            transition: color 0.15s;
+        }
+
+        .visit-note a:hover {
+            color: #533f2e;
+            text-decoration-color: #a77d5e;
+        }
+
+        /* 分隔装饰 */
+        .divider-soft {
+            width: 60px;
+            height: 3px;
+            background: #dcc6b4;
+            border-radius: 10px;
+            margin: 1.8rem 0 1.2rem;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #e5d6c9;
+            margin: 2rem 0 1.2rem;
+        }
+
+        .faq-mini {
+            margin-top: 1.8rem;
+            padding: 1rem 0 0.2rem;
+        }
+
+        .faq-mini summary {
+            font-weight: 500;
+            cursor: pointer;
+            color: #5e4838;
+            padding: 0.6rem 0;
+            border-bottom: 1px dashed #e4d2c2;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .faq-mini summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .faq-mini summary::before {
+            content: "▸";
+            font-size: 1.1rem;
+            color: #b58f74;
+            transition: transform 0.15s;
+        }
+
+        .faq-mini details[open] summary::before {
+            transform: rotate(90deg);
+        }
+
+        .faq-mini .answer {
+            padding: 0.8rem 1.2rem 0.3rem 1.8rem;
+            color: #4b3d32;
+            font-size: 0.95rem;
+        }
+
+        .footer-small {
+            margin-top: 2.5rem;
+            font-size: 0.8rem;
+            color: #917f6e;
+            text-align: right;
+            border-top: 1px solid #e8dbd0;
+            padding-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+<div class="card">
+    <!-- 文章标题 -->
+    <header class="article-header">
+        <h1 class="article-title">
+            乐鱼<small>· 一点笔记</small>
+        </h1>
+        <div class="meta-line">
+            <span>阅读笔记</span>
+            <span>稳定入口</span>
+            <span>页面说明</span>
+        </div>
+    </header>
+
+    <!-- 导语 -->
+    <div class="lead">
+        有时候只需要知道该从哪里开始。这篇笔记记下的是关于一个常用地址、一点界面感受，以及一些不太起眼但值得留意的细节。
+    </div>
+
+    <!-- 正文 -->
+    <div class="body-text">
+        <p>
+            打开一个页面，最先注意的往往不是功能，而是它给人的第一印象。对于经常需要登录或浏览的人来说，<strong>入口的稳定和清晰</strong>比花哨的动效更重要。<strong>乐鱼</strong> 这个站点给人的感觉就是这样——它把主要的内容放在容易找到的位置，没有多余的干扰。页面加载速度尚可，配色偏暖，层次分明，在大多数设备上都能快速适配显示。
+        </p>
+        <p>
+            我用了几个月，中间经历过几次小版本的迭代。最明显的变化是导航栏更简洁了，以前偶尔会出现布局错位的角落也得到了修正。如果你是第一次接触，可能会觉得配色有些保守，但用久了反而觉得耐看，不刺眼。对于需要长期访问的资源或服务来说，<strong>一个不轻易变动、响应稳定的地址</strong>本身就是一种信任基础。
+        </p>
+
+        <!-- 引用提示段落 -->
+        <div class="inset-quote">
+            稳定入口不是指一成不变，而是指在变化中始终保持可访问、可辨识、可依赖。页面说明则是让每个人都能在第一时间理解当前位置与操作路径。
+        </div>
+
+        <p>
+            关于页面说明，我的体会是：不必长篇大论，但关键信息要一目了然。比如当前是否处于维护状态、主要模块的入口在哪里、账户相关操作集中在哪个区域。这些细节看似基础，但减少了很多摸索的时间。<strong>乐鱼</strong> 在这方面做得比较克制，没有到处弹窗提示，而是把说明放在边缘位置，需要的时候一眼就能看到。
+        </p>
+        <p>
+            另外值得一提的是，移动端的适配没有牺牲内容层级。在小屏幕上浏览时，卡片和按钮的间距依然舒适，没有出现文字重叠或按钮过小的问题。对于经常在手机和电脑之间切换的人来说，这种一致性体验很加分。
+        </p>
+    </div>
+
+    <!-- 内嵌链接的访问句（自然放入句子中） -->
+    <div class="visit-note">
+        如果你想自己感受一下，这里有一个直达地址：<a href="https://appofficial-leyu.com">乐鱼</a>。页面加载后可以留意一下导航逻辑和配色细节，或许会和我有类似的感受。
+    </div>
+
+    <div class="divider-soft"></div>
+
+    <!-- 两个小 FAQ 摘要 -->
+    <div class="faq-mini">
+        <details>
+            <summary>这个地址长期有效吗？</summary>
+            <div class="answer">
+                根据目前的使用情况，该域名保持稳定，未出现长时间无法访问的记录。建议将其加入书签，并留意页面本身的公告区域（如果有）。任何服务都可能因运营调整而变化，没有绝对的永久，但就现阶段而言，它是一个可靠的入口。
+            </div>
+        </details>
+        <details>
+            <summary>第一次访问需要注意什么？</summary>
+            <div class="answer">
+                确保网络环境正常，浏览器版本不要太旧。页面会自动适应屏幕，如果遇到加载异常，可以尝试刷新或清除缓存。页面底部或侧边通常有简单的说明文字，可以帮助你快速了解布局。
+            </div>
+        </details>
+    </div>
+
+    <!-- 一个额外的链接按钮（指向相同地址）但文本严格按照要求 = 乐鱼 -->
+    <div class="link-button-wrapper">
+        <a href="https://appofficial-leyu.com">乐鱼</a>
+    </div>
+
+    <!-- 小尾巴 -->
+    <div class="footer-small">
+        记录于一个普通的下午 · 仅作参考
+    </div>
+</div>
+</body>
+</html>
